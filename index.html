@@ -2,15 +2,14 @@
 <head>
     <link rel="stylesheet" href="style.css">
 </head>
-
-<h1>Proyecto para registro de fumigaciones</h1>
+<h1>Registro de Aplicaciones</h1>
 <h2>Agregar nueva aplicación</h2>
 
 <div id="form-box">
     <form>
         <div>
             <span>Parcela:</span>
-            <select id="medio-pago">
+            <select id="parcela">
                 <option value="Dutra">Dutra</option>
                 <option value="Casa">Casa</option>
                 <option value="Grande">Grande</option>
@@ -23,7 +22,7 @@
         </div>
 
         <div>
-            <span>Producto</span> <input type="text" id="concepto" class="input" placeholder="¿qué aplicaste?">
+            <span>Producto:</span> <input type="text" id="concepto" class="input" placeholder="¿qué aplicaste?">
         </div>
 
         <div>
@@ -31,10 +30,9 @@
         </div>
 
         <div>
-            <span>Cantidad:</span> <input type="number" class="input" id="monto" placeholder="¿Cuántos litros/kg?">
+            <span>Cantidad:</span> <input type="number" class="input" id="cantidad" placeholder="¿Cuántos litros/kg?">
         </div>
     </form>
 </div>
-
-<div id="button" class="button" onclick="onRegistrarGasto()">Registrar aplicación</div>
+<div id="button" class="button" onclick="onRegistrarApli()">Registrar aplicación</div>
 <script src="script.js"></script>

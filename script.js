@@ -1,38 +1,27 @@
 const ACCESS_TOKEN =
-  "ya29.a0AWY7CkkSQlhD9aCpbaxPAAnBfs7boBteRtvJxj5MjgjU-uM5lXHAsD68ewHP71kjssE7mYzyocz6u7SdVZn3rI6kaYsQOOsxDzHNkT45EVlvqmy35T1ywur1YXayPOFu_FKhgyv-0igYF5j5_tAzyRtjBej6ccqtaCgYKAU0SARESFQG1tDrpGHTJJAnrUQhOicpb2ePSuA0167";
- 
-const SHEET_ID = '1VsAQzhdAXUwXV3nndCStHn-F-9RtdTQCUCU1QxsJpvI';
+  "ya29.a0AWY7CklC7PiUhSVCbKTq-B6VxG3IZu8g8cMGpinnMC17oVggB5IRj_TVHQ7WDrlb4ZzzfvuWSoFgnQy5tHF3sNjH2YRc-5hLh_kt6Ench1VhPaFdGnDTJygMaADbs8WfOzUR8oYefIS-b1DUliQa95IrQz_l-hkaCgYKASgSARESFQG1tDrpo2ZAPB2MUGy2uN5UaP9YkA0166";
+ const SHEET_ID = '1VsAQzhdAXUwXV3nndCStHn-F-9RtdTQCUCU1QxsJpvI';
 
-//Inicializamos la fecha a la fecha de hoy
 document.getElementById('fecha').valueAsDate = new Date();
 
-
-function onRegistrarGasto() {
-
-  //Obtenemos los datos del formulario
-  const medioPago = document.getElementById('medio-pago').value;
+function onRegistrarApli() {
+  const parcela = document.getElementById('parcela').value;
   const concepto = document.getElementById('concepto').value;
   const fecha = document.getElementById('fecha').value;
-  const monto = document.getElementById('monto').value;
+  const cantidad = document.getElementById('cantidad').value;
   
-  //Creamos el JSON que espera nuestra API
   let data = {};
-  
   let values = [];
-  
-  let fila = [medioPago, concepto, fecha, monto];
+  let fila = [parcela, concepto, fecha, cantidad];
 
   values.push(fila);
   
-  //Verificar que coincida con el nombre de la hoja de nuestro sheet
-  data.range = "hojaGastos";
-  
+  data.range = "hojaAplicaciones";
   data.majorDimension = "ROWS";
   data.values = values;
 
-  //Invocamos al método POST de la API
   fetch(
-    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/hojaGastos:append?valueInputOption=USER_ENTERED`,
+    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/hojaAplicaciones:append?valueInputOption=USER_ENTERED`,
     {
       method: 'POST',
       headers: {
@@ -47,8 +36,7 @@ function onRegistrarGasto() {
     });
   });
 
-  //Limpiamos los campos del formulario para permitir cargar un nuevo gasto
   document.getElementById('concepto').value = "";
   document.getElementById('fecha').valueAsDate = new Date();
-  document.getElementById('monto').value = "";
+  document.getElementById('cantidad').value = "";
 };
